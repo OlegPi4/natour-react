@@ -1,14 +1,23 @@
+/* eslint-disable */
+import { Routes, Route, Link } from "react-router-dom";
+
 import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
-import Content from "./components/content/content";
-
-import "./App.css";
+import Tours from "./components/tours/tours";
+import Login from "./components/login/login";
+import Notfound from "./components/notfound/notfound";
 
 function App() {
   return (
     <>
       <Header />
-      <Content />
+      <main className="main">
+        <Routes>
+          <Route path="/" element={<Tours />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="*" element={<Notfound />} />
+        </Routes>
+      </main>
       <Footer />
     </>
   );

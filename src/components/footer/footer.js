@@ -1,3 +1,4 @@
+/* eslint-disable */
 function Footer() {
   return (
     <footer className="footer">

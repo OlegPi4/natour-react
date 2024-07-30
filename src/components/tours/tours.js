@@ -26,7 +26,7 @@ class Tours extends Component {
     const elements = tours.map((item) => {
       return <Tour key={item._id} item={item} />;
     });
-    return <div className="card-container">{elements};</div>;
+    return <div className="card-container">{elements}</div>;
   }
 }
 

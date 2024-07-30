@@ -1,3 +1,4 @@
+/* eslint-disable */
 const Tour = ({ item }) => {
   return (
     <div className="card" key={item._id}>
@@ -53,7 +54,7 @@ const Tour = ({ item }) => {
       </div>
       <div className="card__footer">
         <p>
-          <span className="card__footer-value"> {item.price} </span>
+          <span className="card__footer-value"> {`${item.price} $`} </span>
           <span>|</span>
           <span className="card__footer-text"> per person </span>
         </p>

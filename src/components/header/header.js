@@ -1,10 +1,14 @@
+/* eslint-disable */
+
+import { Link } from "react-router-dom";
+
 function Header() {
   return (
     <header className="header">
       <nav className="nav nav--tours">
-        <a className="nav__el" href="/">
+        <Link className="nav__el" to="/">
           All tours
-        </a>
+        </Link>
       </nav>
       <div className="header__logo">
         <img src="/img/logo-white.png" alt="Natours logo"></img>
@@ -17,12 +21,12 @@ function Header() {
                img.nav__user-img(src=`/img/users/${user.photo}` alt=`Photo of ${user.name}`)
                span= user.name.split(' ')[0]
          else  */}
-        <a className="nav__el" href="/login">
+        <Link className="nav__el" to="/login">
           Log in
-        </a>
-        <a className="nav__el nav__el--cta " href="/signup">
+        </Link>
+        <Link className="nav__el nav__el--cta " to="/signup">
           Sign up
-        </a>
+        </Link>
       </nav>
     </header>
   );
