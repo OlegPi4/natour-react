@@ -1,17 +1,24 @@
 /* eslint-disable */
+import img from "./Spinner-3.gif";
+import "./spinner.css";
 
-import React from "react";
 const Spinner = () => {
   return (
-    <div
-      className="spinner"
-      style={{ margin: "0 auto", backgroung: "none", display: "block" }}
-    >
+    <div className="message">
+      <div className="message__box">
+        <div className="message__title"> Loading ... </div>
+      </div>
       <img
-        src="./Spinner-3.gif"
-        alt="gif spinner"
-        style={{ margin: "0 auto", backgroung: "none", display: "block" }}
-      ></img>
+        style={{
+          display: "block",
+          width: "90px",
+          height: "90px",
+          objectFit: "contain",
+          margin: "50 auto",
+        }}
+        src={img}
+        alt="image error"
+      />
     </div>
   );
 };
