@@ -2,6 +2,8 @@
 import * as React from "react";
 import { Component } from "react";
 
+import Spinner from "../spiner/spiner";
+
 class Login extends Component {
   state = {
     username: "",
@@ -45,6 +47,7 @@ class Login extends Component {
             <button class="btn btn--green">Login</button>
           </div>
         </form>
+        <Spinner />
       </div>
     );
   }
