@@ -1,9 +1,9 @@
 /* eslint-disable */
 import React, { Component } from "react";
 import ToursService from "../../services/servicesTours";
-import Tour from "../tour/tour";
-import Spinner from "../spiner/spiner";
-import Error from "../error/error";
+import Tour from "../../components/tour/tour";
+import Spinner from "../../components/spiner/spiner";
+import Error from "../../components/error/error";
 
 class Tours extends Component {
   constructor(props) {

@@ -12,28 +12,28 @@ class Signup extends Component {
 
   render() {
     return (
-      <div class="login-form">
-        <h2 class="heading-secondary ma-bt-lg">Sign up account</h2>
-        <form class="form form--signup">
-          <div class="form__group">
-            <label class="form__label" for="name">
+      <div className="login-form">
+        <h2 className="heading-secondary ma-bt-lg">Sign up account</h2>
+        <form className="form form--signup">
+          <div className="form__group">
+            <label className="form__label" htmlFor="name">
               {" "}
               Name{" "}
             </label>
             <input
-              class="form__input"
+              className="form__input"
               id="name"
               type="text"
               placeholder="Your name"
               required="required"
             />
           </div>
-          <div class="form__group">
-            <label class="form__label" for="email">
+          <div className="form__group">
+            <label className="form__label" htmlFor="email">
               Email address
             </label>
             <input
-              class="form__input"
+              className="form__input"
               id="email"
               type="email"
               placeholder="you@example.com"
@@ -41,36 +41,36 @@ class Signup extends Component {
             />
           </div>
 
-          <div class="form__group">
-            <label class="form__label" for="password">
+          <div className="form__group">
+            <label className="form__label" htmlFor="password">
               Password
             </label>
             <input
-              class="form__input"
+              className="form__input"
               id="password"
               type="password"
               placeholder="••••••••"
               required="required"
-              minlength="8"
+              minLength="8"
             />
           </div>
 
-          <div class="form__group ma-bt-md">
-            <label class="form__label" for="passwordConfirm">
+          <div className="form__group ma-bt-md">
+            <label className="form__label" htmlFor="passwordConfirm">
               Confirm password
             </label>
             <input
-              class="form__input"
+              className="form__input"
               id="passwordConfirm"
               type="password"
               placeholder="••••••••"
               required="required"
-              minlength="8"
+              minLength="8"
             />
           </div>
 
-          <div class="form__group">
-            <button class="btn btn--green btn--save-signup">Sign up</button>
+          <div className="form__group">
+            <button className="btn btn--green btn--save-signup">Sign up</button>
           </div>
         </form>
       </div>

@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 
 import "./notfound.css";
 
-import Spinner from "../spiner/spiner";
 function Notfound() {
   return (
     <>
@@ -15,7 +14,6 @@ function Notfound() {
           </Link>
         </div>
       </div>
-      <Spinner />
     </>
   );
 }

@@ -1,4 +1,8 @@
 /* eslint-disable */
+
+import { Link } from "react-router-dom";
+import BibTour from "../../pages/bigTour/bigTour";
+
 const Tour = ({ item }) => {
   return (
     <div className="card" key={item._id}>
@@ -66,10 +70,9 @@ const Tour = ({ item }) => {
             {`rating (${item.ratingsQuantity})`}{" "}
           </span>
         </p>
-        <a className="btn btn--green btn--small" href={`/tour/${item.slug}`}>
-          {" "}
-          Details{" "}
-        </a>
+        <Link className="btn btn--green btn--small" to={`/tour/${item.slug}`}>
+          Details
+        </Link>
       </div>
     </div>
   );

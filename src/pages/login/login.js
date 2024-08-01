@@ -10,39 +10,39 @@ class Login extends Component {
 
   render() {
     return (
-      <div class="login-form">
-        <h2 class="heading-secondary ma-bt-lg">Log into your account</h2>
-        <form class="form form--login">
-          <div class="form__group">
-            <label class="form__label" for="email">
+      <div className="login-form">
+        <h2 className="heading-secondary ma-bt-lg">Log into your account</h2>
+        <form className="form form--login">
+          <div className="form__group">
+            <label className="form__label" htmlFor="email">
               Email address
             </label>
             <input
-              class="form__input"
+              className="form__input"
               id="email"
               type="email"
               placeholder="you@example.com"
               required="required"
             />
           </div>
-          <div class="form__group ma-bt-md">
-            <label class="form__label" for="password">
+          <div className="form__group ma-bt-md">
+            <label className="form__label" htmlFor="password">
               Password
             </label>
             <input
-              class="form__input"
+              className="form__input"
               id="password"
               type="password"
               placeholder="••••••••"
               required="required"
-              minlength="8"
+              minLength="8"
             />
-            <a class="link--forgot-password" href="/forgot">
+            <a className="link--forgot-password" href="/forgot">
               forgot password
             </a>
           </div>
-          <div class="form__group">
-            <button class="btn btn--green">Login</button>
+          <div className="form__group">
+            <button className="btn btn--green">Login</button>
           </div>
         </form>
       </div>
