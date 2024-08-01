@@ -70,7 +70,10 @@ const Tour = ({ item }) => {
             {`rating (${item.ratingsQuantity})`}{" "}
           </span>
         </p>
-        <Link className="btn btn--green btn--small" to={`/tour/${item.slug}`}>
+        <Link
+          className="btn btn--green btn--small"
+          to={`/tour/${item.slug}/${item._id}`}
+        >
           Details
         </Link>
       </div>

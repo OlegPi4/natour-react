@@ -6,11 +6,6 @@ import Spinner from "../../components/spiner/spiner";
 import Error from "../../components/error/error";
 
 class Tours extends Component {
-  constructor(props) {
-    super(props);
-    this.getTours = this.getTours.bind(this);
-  }
-
   state = {
     tours: [],
     loading: true,
