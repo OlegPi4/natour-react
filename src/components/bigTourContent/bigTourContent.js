@@ -4,7 +4,8 @@ import ToursService from "../../services/servicesTours";
 
 import Spinner from "../../components/spiner/spiner";
 import Error from "../../components/error/error";
-import Gides from "../gides/gides";
+import Gides from "./gides/gides";
+import Details from "./details/details";
 
 class BigTourContent extends Component {
   state = {
@@ -85,44 +86,7 @@ class BigTourContent extends Component {
             <div>
               <div className="overview-box__group">
                 <h2 className="heading-secondary ma-bt-lg"> Quick facts </h2>
-
-                <div className="overview-box__detail">
-                  <svg className="overview-box__icon">
-                    <use xlinkHref={`/img/icons.svg#icon-calendar`}></use>
-                  </svg>
-                  <span className="overview-box__label"> Next date </span>
-                  <span className="overview-box__text">
-                    {" "}
-                    {tour.startDates[0].slice(0, 10)}
-                  </span>
-                </div>
-                <div className="overview-box__detail">
-                  <svg className="overview-box__icon">
-                    <use xlinkHref={`/img/icons.svg#icon-trending-up`}></use>
-                  </svg>
-                  <span className="overview-box__label"> Difficulty </span>
-                  <span className="overview-box__text"> {tour.difficulty}</span>
-                </div>
-                <div className="overview-box__detail">
-                  <svg className="overview-box__icon">
-                    <use xlinkHref={`/img/icons.svg#icon-user`}></use>
-                  </svg>
-                  <span className="overview-box__label"> Participiants </span>
-                  <span className="overview-box__text">
-                    {" "}
-                    {tour.maxGroupSize}
-                  </span>
-                </div>
-                <div className="overview-box__detail">
-                  <svg className="overview-box__icon">
-                    <use xlinkHref={`/img/icons.svg#icon-star`}></use>
-                  </svg>
-                  <span className="overview-box__label"> Rating </span>
-                  <span className="overview-box__text">
-                    {" "}
-                    {tour.ratingsAverage} / {tour.ratingsQuantity}
-                  </span>
-                </div>
+                <Details tour={tour} />
               </div>
 
               <div className="overview-box__group">
