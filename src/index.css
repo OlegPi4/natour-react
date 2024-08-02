@@ -388,6 +388,12 @@ body {
   );
 }
 
+@media only screen and (max-width: 660px) {
+  .section-header {
+    height: 60vw;
+  }
+}
+
 .header__hero {
   height: 100%;
 }
@@ -449,6 +455,13 @@ body {
   align-items: center;
   text-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.15);
 }
+
+@media only screen and (max-width: 660px) {
+  .heading-box__detail {
+    font-size: 1.2rem;
+  }
+}
+
 .heading-box__detail svg {
   margin-right: 0.8rem;
 }
@@ -461,6 +474,13 @@ body {
   fill: currentColor;
   -webkit-filter: drop-shadow(0 0.75rem 0.5rem rgba(0, 0, 0, 0.25));
   filter: drop-shadow(0 0.75rem 0.5rem rgba(0, 0, 0, 0.25));
+}
+
+@media only screen and (max-width: 660px) {
+  .heading-box__icon {
+    height: 3rem;
+    width: 3rem;
+  }
 }
 
 .section-description {
