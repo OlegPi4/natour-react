@@ -1,11 +1,13 @@
 /* eslint-disable */
 import { Component } from "react";
+
 import ToursService from "../../services/servicesTours";
 
 import Spinner from "../../components/spiner/spiner";
 import Error from "../../components/error/error";
 import Gides from "./gides/gides";
 import Details from "./details/details";
+import MyMap from "./map/map";
 
 class BigTourContent extends Component {
   state = {
@@ -110,6 +112,24 @@ class BigTourContent extends Component {
                 </p>
               );
             })}
+          </div>
+        </section>
+        <section className="section-pictures">
+          {tour.images.map((item, i) => {
+            return (
+              <div key={i} className="picture-box">
+                <img
+                  src={`/img/tours/${item}`}
+                  alt={`The Park Camper Tour ${i + 1}`}
+                  className={`picture-box__img picture-box__img--${i + 1}`}
+                />
+              </div>
+            );
+          })}
+        </section>
+        <section className="section-map">
+          <div id="map">
+            <MyMap locations={tour.locations} />
           </div>
         </section>
       </>
