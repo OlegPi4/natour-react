@@ -10,19 +10,16 @@ const Map = ReactMapboxGl({
 });
 
 export default function MyMap({ locations }) {
-  console.log(locations);
-
   return (
     <>
       <Map
         style="mapbox://styles/olegpi4/clxx4qkeo000k01qzhl8xh97u"
         containerStyle={{
-          height: "600px",
+          height: "100%",
           width: "100%",
         }}
         zoom={[8]}
         center={[locations[0].coordinates[0], locations[0].coordinates[1]]}
-        scrollZoom={false}
       >
         <Layer type="symbol" id="marker" layout={{ "icon-image": "marker-15" }}>
           <Feature coordinates={[-0.0047846041145, 0.3233379650232]} />

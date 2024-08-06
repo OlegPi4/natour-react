@@ -8,6 +8,7 @@ import Error from "../../components/error/error";
 import Gides from "./gides/gides";
 import Details from "./details/details";
 import MyMap from "./map/map";
+import Reviews from "./reviews/reviews";
 
 class BigTourContent extends Component {
   state = {
@@ -130,6 +131,11 @@ class BigTourContent extends Component {
         <section className="section-map">
           <div id="map">
             <MyMap locations={tour.locations} />
+          </div>
+        </section>
+        <section className="section-reviews">
+          <div className="reviews">
+            <Reviews reviews={tour.reviews} />
           </div>
         </section>
       </>
