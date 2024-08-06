@@ -2,12 +2,15 @@
 import * as React from "react";
 import { Component } from "react";
 import { Link } from "react-router-dom";
+import UsersService from "../../services/servicesUsers";
 import Links from "./links/links";
 
 class Header extends Component {
   state = {
     user: null,
   };
+
+  userService = new UsersService();
 
   componentDidMount() {
     // Check if user is already logged in
@@ -17,10 +20,14 @@ class Header extends Component {
     }
   }
 
-  handleLogout = () => {
-    localStorage.removeItem("user");
-    this.setState({ user: null });
+  onLogout = () => {
+    this.userService.logout().then((res) => {
+      console.log(`User logged out successfully status ${res}`);
+      localStorage.removeItem("user");
+      this.setState({ user: null });
+    });
   };
+
   render() {
     return (
       <header className="header">
@@ -34,7 +41,7 @@ class Header extends Component {
         </div>
 
         <nav className="nav  nav--user">
-          <Links user={this.state.user} />
+          <Links user={this.state.user} onLogout={this.onLogout} />
         </nav>
       </header>
     );

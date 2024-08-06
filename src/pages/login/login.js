@@ -1,6 +1,7 @@
 /* eslint-disable */
 import * as React from "react";
 import { Component } from "react";
+
 import UsersService from "../../services/servicesUsers";
 import Spinner from "../../components/spiner/spiner";
 
@@ -35,7 +36,7 @@ class Login extends Component {
       })
       .catch((err) => this.onError(err));
 
-    localStorage.setItem("user", JSON.stringify(this.state.user));
+    //localStorage.setItem("user", JSON.stringify(this.state.user));
     this.setState({ username: "", password: "" });
     this.setState({ loading: false });
   };

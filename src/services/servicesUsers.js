@@ -14,7 +14,6 @@ class UsersService {
   };
 
   login = async (email, password) => {
-    console.log("in services users");
     try {
       const res = await axios({
         method: "POST",
@@ -33,6 +32,21 @@ class UsersService {
       return res.data;
     } catch (err) {
       showAlert("error", err.response.data.message);
+    }
+  };
+
+  logout = async () => {
+    try {
+      const res = await axios({
+        method: "GET",
+        url: `${this._apiBase}/logout`,
+      });
+      if ((res.data.status = "success")) {
+        return res.data.status;
+      }
+    } catch (err) {
+      console.log(err.response);
+      showAlert("error", "Error logging out! Try again.");
     }
   };
 

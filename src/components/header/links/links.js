@@ -5,14 +5,17 @@ import { Link } from "react-router-dom";
 
 class Links extends Component {
   render() {
-    const { user } = this.props;
+    const { user, onLogout } = this.props;
 
     if (!user) {
       return <NoUserLink />;
     }
     return (
       <>
-        <button className="nav__el nav__el--logout"> Log out </button>
+        <button className="nav__el nav__el--logout" onClick={onLogout}>
+          {" "}
+          Log out{" "}
+        </button>
         <Link className="nav__el" to="/me">
           <img
             className="nav__user-img"
