@@ -6,6 +6,7 @@ import Layout from "./components/layout/layout";
 import Tours from "./pages/tours/tours";
 import Login from "./pages/login/login";
 import Signup from "./pages/signup/signup";
+import Me from "./pages/me/me";
 import Notfound from "./pages/notfound/notfound";
 import BibTour from "./pages/bigTour/bigTour";
 
@@ -18,6 +19,7 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="tour/:slug/:id" element={<BibTour />} />
           <Route path="signup" element={<Signup />} />
+          <Route path="me" element={<Me />} />
           <Route path="*" element={<Notfound />} />
         </Route>
       </Routes>

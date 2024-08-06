@@ -1,4 +1,5 @@
 /* eslint-disable */
+import PropTypes from "prop-types";
 import Rating from "./rating/rating";
 
 const Reviews = ({ reviews }) => {
@@ -22,6 +23,10 @@ const Reviews = ({ reviews }) => {
   });
 
   return <>{revs}</>;
+};
+
+Reviews.propTypes = {
+  reviews: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default Reviews;

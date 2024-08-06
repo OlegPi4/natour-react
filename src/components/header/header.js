@@ -22,7 +22,6 @@ class Header extends Component {
 
   onLogout = () => {
     this.userService.logout().then((res) => {
-      console.log(`User logged out successfully status ${res}`);
       localStorage.removeItem("user");
       this.setState({ user: null });
     });

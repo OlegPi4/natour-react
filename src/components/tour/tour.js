@@ -1,6 +1,7 @@
 /* eslint-disable */
 
 import { Link } from "react-router-dom";
+
 import BibTour from "../../pages/bigTour/bigTour";
 
 const Tour = ({ item }) => {

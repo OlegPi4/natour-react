@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { Component } from "react";
-
+import PropTypes from "prop-types";
 import ToursService from "../../services/servicesTours";
 
 import Spinner from "../../components/spiner/spiner";
@@ -103,7 +103,7 @@ class BigTourContent extends Component {
           <div className="description-box">
             <h2 className="heading-secondary ma-bt-lg">
               {" "}
-              `About ${tour.name} tour`{" "}
+              `About {tour.name} tour`{" "}
             </h2>
             {tour.description.split("\n").map((item, i) => {
               return (
@@ -142,5 +142,8 @@ class BigTourContent extends Component {
     );
   }
 }
-
+BigTourContent.propTypes = {
+  id: PropTypes.string.isRequired,
+  slug: PropTypes.string,
+};
 export default BigTourContent;

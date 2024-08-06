@@ -36,7 +36,6 @@ class Login extends Component {
       })
       .catch((err) => this.onError(err));
 
-    //localStorage.setItem("user", JSON.stringify(this.state.user));
     this.setState({ username: "", password: "" });
     this.setState({ loading: false });
   };
