@@ -28,11 +28,14 @@ class Login extends Component {
   onPressLogin = (e) => {
     e.preventDefault();
     this.setState({ loading: true });
+    console.log(this.state.loading);
     this.userService
       .login(this.state.username, this.state.password)
       .then((res) => {
-        this.setState({ user: res.data.user });
-        localStorage.setItem("user", JSON.stringify(res.data.user));
+        if (res) {
+          this.setState({ user: res.data.user });
+          localStorage.setItem("user", JSON.stringify(res.data.user));
+        }
       })
       .catch((err) => this.onError(err));
 

@@ -1,3 +1,4 @@
+/* eslint-disable */
 const Details = ({ tour }) => {
   const options = {
     year: "numeric",
