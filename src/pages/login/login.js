@@ -28,7 +28,7 @@ class Login extends Component {
   onPressLogin = (e) => {
     e.preventDefault();
     this.setState({ loading: true });
-    console.log(this.state.loading);
+
     this.userService
       .login(this.state.username, this.state.password)
       .then((res) => {
@@ -52,7 +52,7 @@ class Login extends Component {
   }
 
   render() {
-    const { loading, user } = this.state;
+    const { loading } = this.state;
     if (loading) {
       return <Spinner />;
     }

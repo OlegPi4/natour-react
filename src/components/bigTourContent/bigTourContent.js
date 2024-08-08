@@ -9,6 +9,7 @@ import Gides from "./gides/gides";
 import Details from "./details/details";
 import MyMap from "./map/map";
 import Reviews from "./reviews/reviews";
+import Cta from "./cta/cta";
 
 class BigTourContent extends Component {
   state = {
@@ -137,6 +138,9 @@ class BigTourContent extends Component {
           <div className="reviews">
             <Reviews reviews={tour.reviews} />
           </div>
+        </section>
+        <section className="section-cta">
+          <Cta tour={tour} />
         </section>
       </>
     );
