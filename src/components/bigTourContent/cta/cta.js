@@ -7,11 +7,26 @@ class Cta extends Component {
     user: null,
   };
 
-  componentDidMount() {
+  getUser = () => {
     const user = JSON.parse(localStorage.getItem("user"));
-    this.setState({ user });
+    if (user) {
+      this.setState({ user });
+    } else {
+      this.setState({ user: null });
+    }
+  };
+  updateUser = () => {
+    setInterval(() => this.getUser(), 1500);
+  };
+
+  componentDidMount() {
+    this.getUser();
+    this.updateUser();
   }
 
+  componentWillUnmount() {
+    clearInterval(this.updateUser);
+  }
   render() {
     const { tour } = this.props;
 

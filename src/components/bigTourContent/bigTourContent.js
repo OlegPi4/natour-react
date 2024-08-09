@@ -70,7 +70,7 @@ class BigTourContent extends Component {
                   <use xlinkHref="/img/icons.svg#icon-clock"></use>
                 </svg>
                 <span className="heading-box__text">
-                  `${tour.duration} days`
+                  `{tour.duration} days`
                 </span>
               </div>
               <div className="heading-box__detail">

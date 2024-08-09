@@ -12,12 +12,23 @@ class Header extends Component {
 
   userService = new UsersService();
 
-  componentDidMount() {
-    // Check if user is already logged in
+  getUser = () => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (user) {
       this.setState({ user });
     }
+  };
+  updateUser = () => {
+    setInterval(() => this.getUser(), 1500);
+  };
+
+  componentDidMount() {
+    this.getUser();
+    this.updateUser();
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.updateUser);
   }
 
   onLogout = () => {
