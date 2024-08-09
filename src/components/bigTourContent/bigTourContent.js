@@ -39,6 +39,7 @@ class BigTourContent extends Component {
 
   componentDidMount() {
     this.getTour();
+    document.title = "Natour   |   tour";
   }
 
   render() {

@@ -49,6 +49,7 @@ class Login extends Component {
     if (user) {
       this.setState({ user });
     }
+    document.title = "Natour | login";
   }
 
   render() {

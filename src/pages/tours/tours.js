@@ -32,7 +32,9 @@ class Tours extends Component {
 
   componentDidMount() {
     this.getTours();
+    document.title = "Natour   |   tours";
   }
+
   render() {
     const { tours, loading, error } = this.state;
 

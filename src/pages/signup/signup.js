@@ -10,6 +10,10 @@ class Signup extends Component {
     passwordConfirm: "",
   };
 
+  componentDidMount() {
+    document.title = "Natour | signup";
+  }
+
   render() {
     return (
       <div className="login-form">
