@@ -1,53 +1,54 @@
 /* eslint-disable */
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import ToursService from "../../services/servicesTours";
 import Tour from "../../components/tour/tour";
 import Spinner from "../../components/spiner/spiner";
 import Error from "../../components/error/error";
 
-class Tours extends Component {
-  state = {
-    tours: [],
-    loading: true,
-    error: false,
+const Tours = () => {
+  const [tours, setTours] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  const toursService = new ToursService();
+
+  const onToursLoaded = (tours) => {
+    console.log("onToursLoaded");
+    setTours(tours);
+    setLoading(false);
   };
 
-  toursService = new ToursService();
-
-  onToursLoaded = (tours) => {
-    this.setState({ tours, loading: false });
-  };
-
-  onError = (err) => {
+  const onError = (err) => {
+    console.log("onError");
     console.error(err);
-    this.setState({ error: true, loading: false });
+    setError(true);
+    setLoading(false);
   };
 
-  getTours = () => {
-    this.toursService
+  const getTours = () => {
+    console.log("getTour");
+    toursService
       .getAllTours()
-      .then((res) => this.onToursLoaded(res.data.data))
-      .catch((err) => this.onError(err));
+      .then((res) => onToursLoaded(res.data.data))
+      .catch((err) => onError(err));
   };
 
-  componentDidMount() {
-    this.getTours();
+  useEffect(() => {
+    console.log("useEffect");
+    getTours();
     document.title = "Natour   |   tours";
-  }
+  }, []);
 
-  render() {
-    const { tours, loading, error } = this.state;
-
-    if (loading) {
-      return <Spinner />;
-    } else if (error) {
-      return <Error />;
-    }
-    const elements = tours.map((item) => {
-      return <Tour key={item._id} item={item} />;
-    });
-    return <div className="card-container">{elements}</div>;
+  if (loading) {
+    return <Spinner />;
   }
-}
+  if (error) {
+    return <Error />;
+  }
+  const elements = tours.map((item) => {
+    return <Tour key={item._id} item={item} />;
+  });
+  return <div className="card-container">{elements}</div>;
+};
 
 export default Tours;
