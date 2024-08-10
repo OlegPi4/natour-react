@@ -1,109 +1,106 @@
 /* eslint-disable */
 import * as React from "react";
-import { Component } from "react";
+import { useState, useEffect } from "react";
 
 import UsersService from "../../services/servicesUsers";
 import Spinner from "../../components/spiner/spiner";
 
-class Login extends Component {
-  state = {
-    username: "",
-    password: "",
-    user: null,
-    loading: false,
-  };
+const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [user, setUser] = useState("");
+  const [loading, setLoading] = useState("");
 
-  userService = new UsersService();
+  const userService = new UsersService();
 
-  onValueChange = (event) => {
+  const onValueChange = (event) => {
     const { name, value } = event.target;
-    this.setState({ [name]: value });
+
+    if (name == "username") {
+      setUsername(value);
+    }
+    if (name == "password") {
+      setPassword(value);
+    }
   };
 
-  onError = (err) => {
-    console.error(err);
-    this.setState({ error: true, loading: false });
-  };
-
-  onPressLogin = (e) => {
+  const onPressLogin = (e) => {
     e.preventDefault();
-    this.setState({ loading: true });
+    setLoading(true);
 
-    this.userService
-      .login(this.state.username, this.state.password)
+    userService
+      .login(username, password)
       .then((res) => {
         if (res) {
-          this.setState({ user: res.data.user });
+          setUser(res.data.user);
           localStorage.setItem("user", JSON.stringify(res.data.user));
         }
       })
       .catch((err) => this.onError(err));
 
-    this.setState({ username: "", password: "" });
-    this.setState({ loading: false });
+    setUsername("");
+    setPassword("");
+    setLoading(false);
   };
 
-  componentDidMount() {
+  useEffect(() => {
     // Check if user is already logged in
     const user = JSON.parse(localStorage.getItem("user"));
     if (user) {
-      this.setState({ user });
+      setUser(user);
     }
     document.title = "Natour | login";
-  }
+  }, []);
 
-  render() {
-    const { loading } = this.state;
-    if (loading) {
-      return <Spinner />;
-    }
-    return (
-      <div className="login-form">
-        <h2 className="heading-secondary ma-bt-lg">Log into your account</h2>
-        <form className="form form--login">
-          <div className="form__group">
-            <label className="form__label" htmlFor="email">
-              Email address
-            </label>
-            <input
-              className="form__input"
-              id="email"
-              type="email"
-              placeholder="you@example.com"
-              required="required"
-              name="username"
-              value={this.state.username}
-              onChange={this.onValueChange}
-            />
-          </div>
-          <div className="form__group ma-bt-md">
-            <label className="form__label" htmlFor="password">
-              Password
-            </label>
-            <input
-              className="form__input"
-              id="password"
-              type="password"
-              placeholder="••••••••"
-              required="required"
-              minLength="8"
-              name="password"
-              value={this.state.password}
-              onChange={this.onValueChange}
-            />
-            <a className="link--forgot-password" href="/forgot">
-              forgot password
-            </a>
-          </div>
-          <div className="form__group">
-            <button className="btn btn--green" onClick={this.onPressLogin}>
-              Login
-            </button>
-          </div>
-        </form>
-      </div>
-    );
+  if (loading) {
+    return <Spinner />;
   }
-}
+  return (
+    <div className="login-form">
+      <h2 className="heading-secondary ma-bt-lg">Log into your account</h2>
+      <form className="form form--login">
+        <div className="form__group">
+          <label className="form__label" htmlFor="email">
+            Email address
+          </label>
+          <input
+            className="form__input"
+            id="email"
+            type="email"
+            placeholder="you@example.com"
+            required="required"
+            name="username"
+            value={username}
+            onChange={onValueChange}
+          />
+        </div>
+        <div className="form__group ma-bt-md">
+          <label className="form__label" htmlFor="password">
+            Password
+          </label>
+          <input
+            className="form__input"
+            id="password"
+            type="password"
+            placeholder="••••••••"
+            required="required"
+            minLength="8"
+            name="password"
+            value={password}
+            onChange={onValueChange}
+          />
+          <a className="link--forgot-password" href="/forgot">
+            forgot password
+          </a>
+        </div>
+        <div className="form__group">
+          <button className="btn btn--green" onClick={onPressLogin}>
+            Login
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+};
 
 export default Login;
