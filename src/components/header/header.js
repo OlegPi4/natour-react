@@ -1,61 +1,58 @@
 /* eslint-disable */
 import * as React from "react";
-import { Component } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import UsersService from "../../services/servicesUsers";
 import Links from "./links/links";
 
-class Header extends Component {
-  state = {
-    user: null,
-  };
+const Header = () => {
+  const [user, setUser] = useState(null);
 
-  userService = new UsersService();
+  const userService = new UsersService();
 
-  getUser = () => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (user) {
-      this.setState({ user });
+  const getUser = () => {
+    const us = JSON.parse(localStorage.getItem("user"));
+    if (us) {
+      setUser(us);
     }
   };
-  updateUser = () => {
-    setInterval(() => this.getUser(), 1500);
+
+  const updateUser = () => {
+    setInterval(() => getUser(), 1500);
   };
 
-  componentDidMount() {
-    this.getUser();
-    this.updateUser();
-  }
+  useEffect(() => {
+    getUser();
+    updateUser();
 
-  componentWillUnmount() {
-    clearInterval(this.updateUser);
-  }
+    return () => {
+      clearInterval(updateUser);
+    };
+  }, []);
 
-  onLogout = () => {
-    this.userService.logout().then((res) => {
+  const onLogout = () => {
+    userService.logout().then(() => {
       localStorage.removeItem("user");
-      this.setState({ user: null });
+      setUser(null);
     });
   };
 
-  render() {
-    return (
-      <header className="header">
-        <nav className="nav nav--tours">
-          <Link className="nav__el" to="/">
-            All tours
-          </Link>
-        </nav>
-        <div className="header__logo">
-          <img src="/img/logo-white.png" alt="Natours logo"></img>
-        </div>
+  return (
+    <header className="header">
+      <nav className="nav nav--tours">
+        <Link className="nav__el" to="/">
+          All tours
+        </Link>
+      </nav>
+      <div className="header__logo">
+        <img src="/img/logo-white.png" alt="Natours logo"></img>
+      </div>
 
-        <nav className="nav  nav--user">
-          <Links user={this.state.user} onLogout={this.onLogout} />
-        </nav>
-      </header>
-    );
-  }
-}
+      <nav className="nav  nav--user">
+        <Links user={user} onLogout={onLogout} />
+      </nav>
+    </header>
+  );
+};
 
 export default Header;

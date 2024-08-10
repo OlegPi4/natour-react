@@ -1,17 +1,15 @@
 import * as React from "react";
-import { Component } from "react";
+import { useEffect } from "react";
 
-class Me extends Component {
-  componentDidMount() {
+const Me = () => {
+  useEffect(() => {
     document.title = "Natour | me";
-  }
+  });
 
-  render() {
-    return (
-      <div>
-        <h1>Me</h1>
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <h1>Me</h1>
+    </div>
+  );
+};
 export default Me;

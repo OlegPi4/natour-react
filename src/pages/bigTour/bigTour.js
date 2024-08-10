@@ -2,6 +2,7 @@
 
 import { useParams } from "react-router-dom";
 import BigTourContent from "../../components/bigTourContent/bigTourContent";
+
 const BibTour = () => {
   const { slug, id } = useParams();
 
