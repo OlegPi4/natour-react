@@ -7,7 +7,7 @@ import Spinner from "../../components/spiner/spiner";
 import Error from "../../components/error/error";
 import Gides from "./gides/gides";
 import Details from "./details/details";
-import MyMap from "./map/map";
+
 import Reviews from "./reviews/reviews";
 import Cta from "./cta/cta";
 
@@ -123,11 +123,9 @@ const BigTourContent = (props) => {
           );
         })}
       </section>
-      {/* <section className="section-map">
-        <div id="map">
-          <MyMap locations={[tour.locations]} />
-        </div>
-      </section> */}
+      <section className="section-map">
+        <div className="map"></div>
+      </section>
       <section className="section-reviews">
         <div className="reviews">
           <Reviews reviews={tour.reviews} />

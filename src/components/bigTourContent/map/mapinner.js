@@ -2,12 +2,12 @@
 
 //import "mapbox-gl/dist/mapbox-gl.css";
 
-const TOKEN = process.env.REACT_APP_TOKEN;
-const parent = document.querySelector(".section-map");
-const el = document.createElement("div");
-el.setAttribute("id", "map");
+// const TOKEN = process.env.REACT_APP_TOKEN;
+// const parent = document.querySelector(".section-map");
+// const el = document.createElement("div");
+// el.setAttribute("id", "map");
 
-parent.appendChild(el);
+// parent.appendChild(el);
 
 // function Mapinner({ loc }) {
 //   console.log(TOKEN);
@@ -55,4 +55,4 @@ parent.appendChild(el);
 //  return <></>;
 //}
 
-export default Mapinner;
+//export default Mapinner;
