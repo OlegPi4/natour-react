@@ -1,16 +1,54 @@
 /* eslint-disable */
 import * as React from "react";
 import { useState, useEffect } from "react";
+import UsersService from "../../services/servicesUsers";
+import Spinner from "../../components/spiner/spiner";
 
 const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+
+  const userService = new UsersService();
+
+  const onError = (err) => {
+    console.error(err);
+    setError(true);
+    setLoading(false);
+  };
+
+  const onPressSignup = (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    userService
+      .signup(name, email, password, passwordConfirm)
+      .then((res) => {
+        if (res) {
+        }
+      })
+      .catch((err) => onError(err));
+
+    setName("");
+    setPassword("");
+    setLoading(false);
+    setEmail("");
+    setPasswordConfirm("");
+  };
 
   useEffect(() => {
     document.title = "Natour | signup";
   }, []);
+
+  {
+    loading ? <Spinner /> : null;
+  }
+  {
+    error ? <Error /> : null;
+  }
 
   return (
     <div className="login-form">
@@ -27,6 +65,8 @@ const Signup = () => {
             type="text"
             placeholder="Your name"
             required="required"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
         </div>
         <div className="form__group">
@@ -39,6 +79,8 @@ const Signup = () => {
             type="email"
             placeholder="you@example.com"
             required="required"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
 
@@ -53,6 +95,8 @@ const Signup = () => {
             placeholder="••••••••"
             required="required"
             minLength="8"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
 
@@ -67,11 +111,18 @@ const Signup = () => {
             placeholder="••••••••"
             required="required"
             minLength="8"
+            value={passwordConfirm}
+            onChange={(e) => setPasswordConfirm(e.target.value)}
           />
         </div>
 
         <div className="form__group">
-          <button className="btn btn--green btn--save-signup">Sign up</button>
+          <button
+            className="btn btn--green btn--save-signup"
+            onClick={onPressSignup}
+          >
+            Sign up
+          </button>
         </div>
       </form>
     </div>

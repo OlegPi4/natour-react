@@ -123,11 +123,11 @@ const BigTourContent = (props) => {
           );
         })}
       </section>
-      <section className="section-map">
+      {/* <section className="section-map">
         <div id="map">
-          <MyMap locations={tour.locations} />
+          <MyMap locations={[tour.locations]} />
         </div>
-      </section>
+      </section> */}
       <section className="section-reviews">
         <div className="reviews">
           <Reviews reviews={tour.reviews} />

@@ -4,14 +4,22 @@ import { useState, useEffect } from "react";
 
 import UsersService from "../../services/servicesUsers";
 import Spinner from "../../components/spiner/spiner";
+import Error from "../../components/error/error";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState("");
-  const [loading, setLoading] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const userService = new UsersService();
+
+  const onError = (err) => {
+    console.error(err);
+    setError(true);
+    setLoading(false);
+  };
 
   const onValueChange = (event) => {
     const { name, value } = event.target;
@@ -36,7 +44,7 @@ const Login = () => {
           localStorage.setItem("user", JSON.stringify(res.data.user));
         }
       })
-      .catch((err) => this.onError(err));
+      .catch((err) => onError(err));
 
     setUsername("");
     setPassword("");
@@ -54,6 +62,8 @@ const Login = () => {
 
   if (loading) {
     return <Spinner />;
+  } else if (error) {
+    return <Error />;
   }
   return (
     <div className="login-form">
