@@ -31,9 +31,11 @@ const Header = () => {
   }, []);
 
   const onLogout = () => {
-    userService.logout().then(() => {
-      localStorage.removeItem("user");
-      setUser(null);
+    userService.logout().then((res) => {
+      if (res == "success") {
+        localStorage.removeItem("user");
+        setUser(null);
+      }
     });
   };
 
