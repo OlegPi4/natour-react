@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import "mapbox-gl/dist/mapbox-gl.css";
+//import "mapbox-gl/dist/mapbox-gl.css";
 
 const TOKEN = process.env.REACT_APP_TOKEN;
 const parent = document.querySelector(".section-map");
