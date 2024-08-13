@@ -10,9 +10,7 @@ const Cta = ({ tour }) => {
   function getUser() {
     let us = JSON.parse(localStorage.getItem("user"));
 
-    if (user !== us) {
-      setUser(us);
-    }
+    setUser(us);
   }
 
   function updateUser() {
