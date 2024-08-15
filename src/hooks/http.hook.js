@@ -19,15 +19,17 @@ const useHttp = () => {
         const res = await axios({ method, url, data, headers });
 
         if (res.data.status === "success") {
-          showAlert("success", "Connection successful!");
-          window.setTimeout(() => {}, 1500);
           setLoading(false);
+          window.setTimeout(() => {
+            showAlert("success", "Connection successful!");
+          }, 1500);
 
           return res.data;
         }
       } catch (error) {
         setLoading(false);
-        showAlert("error", error.res.data);
+        showAlert("error", error.res);
+        window.setTimeout(() => {}, 1500);
         setError(true);
         throw error;
       }

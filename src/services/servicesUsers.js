@@ -49,6 +49,30 @@ class UsersService {
     }
   };
 
+  signup = async (name, email, password, passwordConfirm) => {
+    try {
+      const res = await axios({
+        method: "POST",
+        url: `${this._apiBase}/signup`,
+        data: {
+          name,
+          email,
+          password,
+          passwordConfirm,
+        },
+      });
+
+      if (res.data.status === "success") {
+        showAlert("success", "Go to your email and confirm the message! ");
+        window.setTimeout(() => {}, 2500);
+      }
+
+      return res.data;
+    } catch (err) {
+      showAlert("error", err.response.data.message);
+    }
+  };
+
   getAllUsers = () => {
     return this.getResours(`${this._apiBase}`);
   };

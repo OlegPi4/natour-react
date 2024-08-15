@@ -1,40 +1,20 @@
 /* eslint-disable */
-import React, { useState, useEffect } from "react";
-import ToursService from "../../services/servicesTours";
+import React, { useEffect } from "react";
+import useToursService from "../../services/servicesTours";
 import Tour from "../../components/tour/tour";
 import Spinner from "../../components/spiner/spiner";
 import Error from "../../components/error/error";
 
 const Tours = () => {
-  const [tours, setTours] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-
-  const toursService = new ToursService();
-
-  const onToursLoaded = (tours) => {
-    console.log("onToursLoaded");
-    setTours(tours);
-    setLoading(false);
-  };
-
-  const onError = (err) => {
-    console.log("onError");
-    console.error(err);
-    setError(true);
-    setLoading(false);
-  };
+  const { tours, loading, error, errorMessage, clearError, getAllTours } =
+    useToursService();
 
   const getTours = () => {
-    console.log("getTour");
-    toursService
-      .getAllTours()
-      .then((res) => onToursLoaded(res.data.data))
-      .catch((err) => onError(err));
+    getAllTours();
   };
 
   useEffect(() => {
-    console.log("useEffect");
+    clearError();
     getTours();
     document.title = "Natour   |   tours";
   }, []);
@@ -43,7 +23,7 @@ const Tours = () => {
     return <Spinner />;
   }
   if (error) {
-    return <Error />;
+    return <Error errorMessage={errorMessage} />;
   }
   const elements = tours.map((item) => {
     return <Tour key={item._id} item={item} />;

@@ -3,6 +3,7 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import UsersService from "../../services/servicesUsers";
 import Spinner from "../../components/spiner/spiner";
+import Error from "../../components/spiner/spiner";
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -26,10 +27,7 @@ const Signup = () => {
 
     userService
       .signup(name, email, password, passwordConfirm)
-      .then((res) => {
-        if (res) {
-        }
-      })
+      .then((res) => {})
       .catch((err) => onError(err));
 
     setName("");
@@ -43,12 +41,9 @@ const Signup = () => {
     document.title = "Natour | signup";
   }, []);
 
-  {
-    loading ? <Spinner /> : null;
-  }
-  {
-    error ? <Error /> : null;
-  }
+  loading ? <Spinner /> : null;
+
+  error ? <Error /> : null;
 
   return (
     <div className="login-form">

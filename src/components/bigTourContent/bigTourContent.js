@@ -1,8 +1,7 @@
 /* eslint-disable */
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import ToursService from "../../services/servicesTours";
-
+import useToursService from "../../services/servicesTours";
 import Spinner from "../../components/spiner/spiner";
 import Error from "../../components/error/error";
 import Gides from "./gides/gides";
@@ -12,32 +11,16 @@ import Reviews from "./reviews/reviews";
 import Cta from "./cta/cta";
 
 const BigTourContent = (props) => {
-  const [loading, setLoading] = useState(true);
-  const [tour, setTour] = useState({});
-  const [error, setError] = useState(false);
-
-  const toursService = new ToursService();
-
-  const onTourLoaded = (tour) => {
-    setTour(tour);
-    setLoading(false);
-  };
-
-  const onError = (err) => {
-    console.error(err);
-    setError(true);
-    setLoading(false);
-  };
+  const { tours, loading, error, errorMessage, clearError, getOneTour } =
+    useToursService();
 
   const getTour = () => {
     let id = props.id;
-    toursService
-      .getOneTour(id)
-      .then((res) => onTourLoaded(res.data.data))
-      .catch((err) => onError(err));
+    getOneTour(id);
   };
 
   useEffect(() => {
+    clearError();
     getTour();
     document.title = "Natour   |   tour";
   }, []);
@@ -45,7 +28,7 @@ const BigTourContent = (props) => {
   if (loading) {
     return <Spinner />;
   } else if (error) {
-    return <Error />;
+    return <Error errorMessage={errorMessage} />;
   }
   return (
     <>
@@ -54,20 +37,20 @@ const BigTourContent = (props) => {
           <div className="header__hero-overlay"> &nbsp;</div>
           <img
             className="header__hero-img"
-            src={`/img/tours/${tour.imageCover}`}
-            alt={tour.name}
+            src={`/img/tours/${tours.imageCover}`}
+            alt={tours.name}
           />
         </div>
         <div className="heading-box">
           <h1 className="heading-primary">
-            <span> {`${tour.name} tour`} </span>
+            <span> {`${tours.name} tour`} </span>
           </h1>
           <div className="heading-box__group">
             <div className="heading-box__detail">
               <svg className="heading-box__icon">
                 <use xlinkHref="/img/icons.svg#icon-clock"></use>
               </svg>
-              <span className="heading-box__text">`{tour.duration} days`</span>
+              <span className="heading-box__text">`{tours.duration} days`</span>
             </div>
             <div className="heading-box__detail">
               <svg className="heading-box__icon">
@@ -75,7 +58,7 @@ const BigTourContent = (props) => {
               </svg>
               <span className="heading-box__text">
                 {" "}
-                {tour.startLocation.description}
+                {tours.startLocation.description}
               </span>
             </div>
           </div>
@@ -86,21 +69,21 @@ const BigTourContent = (props) => {
           <div>
             <div className="overview-box__group">
               <h2 className="heading-secondary ma-bt-lg"> Quick facts </h2>
-              <Details tour={tour} />
+              <Details tour={tours} />
             </div>
 
             <div className="overview-box__group">
               <h2 className="heading-secondary ma-bt-lg">Your tour guides </h2>
-              <Gides persons={tour.guides} />
+              <Gides persons={tours.guides} />
             </div>
           </div>
         </div>
         <div className="description-box">
           <h2 className="heading-secondary ma-bt-lg">
             {" "}
-            `About {tour.name} tour`{" "}
+            `About {tours.name} tour`{" "}
           </h2>
-          {tour.description.split("\n").map((item, i) => {
+          {tours.description.split("\n").map((item, i) => {
             return (
               <p key={i} className="description__text">
                 {" "}
@@ -111,7 +94,7 @@ const BigTourContent = (props) => {
         </div>
       </section>
       <section className="section-pictures">
-        {tour.images.map((item, i) => {
+        {tours.images.map((item, i) => {
           return (
             <div key={i} className="picture-box">
               <img
@@ -128,11 +111,11 @@ const BigTourContent = (props) => {
       </section>
       <section className="section-reviews">
         <div className="reviews">
-          <Reviews reviews={tour.reviews} />
+          <Reviews reviews={tours.reviews} />
         </div>
       </section>
       <section className="section-cta">
-        <Cta tour={tour} />
+        <Cta tour={tours} />
       </section>
     </>
   );

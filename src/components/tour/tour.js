@@ -2,8 +2,6 @@
 
 import { Link } from "react-router-dom";
 
-import BibTour from "../../pages/bigTour/bigTour";
-
 const Tour = ({ item }) => {
   return (
     <div className="card" key={item._id}>
