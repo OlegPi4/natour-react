@@ -5,6 +5,7 @@ import { showAlert } from "../services/alerts";
 const useHttp = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const request = useCallback(
     async (
@@ -19,27 +20,30 @@ const useHttp = () => {
         const res = await axios({ method, url, data, headers });
 
         if (res.data.status === "success") {
-          setLoading(false);
-          window.setTimeout(() => {
-            showAlert("success", "Connection successful!");
-          }, 1500);
+          // window.setTimeout(() => {
+          //   showAlert("success", "Connection successful!");
+          // }, 1500);
 
           return res.data;
         }
       } catch (error) {
-        setLoading(false);
-        showAlert("error", error.res);
-        window.setTimeout(() => {}, 1500);
+        //setLoading(false);
+        // showAlert("error", error.res);
+        // window.setTimeout(() => {}, 1500);
+
+        console.log(error.response.data.message);
         setError(true);
-        throw error;
+        setErrorMessage(error.response.data.message);
+        //throw error;
       }
+      setLoading(false);
     },
     []
   );
 
   const clearError = useCallback(() => setError(null), []);
 
-  return { loading, error, request, clearError };
+  return { loading, error, request, errorMessage, clearError };
 };
 
 export default useHttp;

@@ -9,6 +9,7 @@ import Signup from "./pages/signup/signup";
 import Me from "./pages/me/me";
 import Notfound from "./pages/notfound/notfound";
 import BibTour from "./pages/bigTour/bigTour";
+import ForgotPassword from "./pages/forgotPassword/forgotPassword";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="tour/:slug/:id" element={<BibTour />} />
           <Route path="signup" element={<Signup />} />
           <Route path="me" element={<Me />} />
+          <Route path="forgotPassword" element={<ForgotPassword />} />
           <Route path="*" element={<Notfound />} />
         </Route>
       </Routes>

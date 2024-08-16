@@ -6,10 +6,9 @@ import UsersService from "../../services/servicesUsers";
 import Spinner from "../../components/spiner/spiner";
 import Error from "../../components/error/error";
 
-const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [user, setUser] = useState("");
+const ForgotPassword = () => {
+  const [email, setEmail] = useState("");
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -24,40 +23,31 @@ const Login = () => {
   const onValueChange = (event) => {
     const { name, value } = event.target;
 
-    if (name == "username") {
-      setUsername(value);
-    }
-    if (name == "password") {
-      setPassword(value);
+    if (name == "email") {
+      setEmail(value);
     }
   };
 
-  const onPressLogin = (e) => {
+  const onPressConfirm = (e) => {
     e.preventDefault();
     setLoading(true);
 
     userService
-      .login(username, password)
+      .forgot(email)
       .then((res) => {
         if (res) {
-          setUser(res.data.user);
-          localStorage.setItem("user", JSON.stringify(res.data.user));
+          console.log(res);
         }
       })
       .catch((err) => onError(err));
 
-    setUsername("");
-    setPassword("");
+    setEmail("");
     setLoading(false);
   };
 
   useEffect(() => {
     // Check if user is already logged in
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (user) {
-      setUser(user);
-    }
-    document.title = "Natour | login";
+    document.title = "Natour | forgot password";
   }, []);
 
   if (loading) {
@@ -79,33 +69,15 @@ const Login = () => {
             type="email"
             placeholder="you@example.com"
             required="required"
-            name="username"
-            value={username}
+            name="email"
+            value={email}
             onChange={onValueChange}
           />
         </div>
-        <div className="form__group ma-bt-md">
-          <label className="form__label" htmlFor="password">
-            Password
-          </label>
-          <input
-            className="form__input"
-            id="password"
-            type="password"
-            placeholder="••••••••"
-            required="required"
-            minLength="8"
-            name="password"
-            value={password}
-            onChange={onValueChange}
-          />
-          <a className="link--forgot-password" href="/forgotPassword">
-            forgot password
-          </a>
-        </div>
+
         <div className="form__group">
-          <button className="btn btn--green" onClick={onPressLogin}>
-            Login
+          <button className="btn btn--green" onClick={onPressConfirm}>
+            Confirm
           </button>
         </div>
       </form>
@@ -113,4 +85,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ForgotPassword;

@@ -69,6 +69,22 @@ class UsersService {
 
       return res.data;
     } catch (err) {
+      console.log(err);
+      showAlert("error", err);
+    }
+  };
+
+  forgot = async (email) => {
+    try {
+      const res = await axios({
+        method: "POST",
+        url: `${this._apiBase}/forgotPassword`,
+        data: {
+          email,
+        },
+      });
+      return res.data;
+    } catch (err) {
       showAlert("error", err.response.data.message);
     }
   };
