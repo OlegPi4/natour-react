@@ -1,6 +1,8 @@
 /* eslint-disable */
 import * as React from "react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import UsersService from "../../services/servicesUsers";
 import Spinner from "../../components/spiner/spiner";
 import Error from "../../components/spiner/spiner";
@@ -13,6 +15,7 @@ const Signup = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
+  let navigate = useNavigate();
   const userService = new UsersService();
 
   const onError = (err) => {
@@ -27,7 +30,9 @@ const Signup = () => {
 
     userService
       .signup(name, email, password, passwordConfirm)
-      .then((res) => {})
+      .then((res) => {
+        navigate("/login");
+      })
       .catch((err) => onError(err));
 
     setName("");
