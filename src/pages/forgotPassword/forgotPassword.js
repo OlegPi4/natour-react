@@ -11,13 +11,10 @@ const ForgotPassword = () => {
   const [show, setShow] = useState(false);
 
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
 
   const userService = new UsersService();
 
   const onError = (err) => {
-    console.error(err);
-    setError(true);
     setLoading(false);
   };
 
@@ -35,8 +32,13 @@ const ForgotPassword = () => {
 
     userService
       .forgot(email)
-      .then(() => {
-        setShow(true);
+      .then((res) => {
+        if (res.status === "success") {
+          setShow(true);
+          setTimeout(() => {
+            setShow(false);
+          }, 5000);
+        }
       })
       .catch((err) => onError(err));
 
@@ -51,13 +53,11 @@ const ForgotPassword = () => {
 
   if (loading) {
     return <Spinner />;
-  } else if (error) {
-    return <Error />;
   }
   return (
     <>
       <div className="login-form">
-        <h2 className="heading-secondary ma-bt-lg">Log into your account</h2>
+        <h2 className="heading-secondary ma-bt-lg">Forgot password</h2>
         <form className="form form--login">
           <div className="form__group">
             <label className="form__label" htmlFor="email">
@@ -84,8 +84,8 @@ const ForgotPassword = () => {
       </div>
 
       {show ? (
-        <div className="show login-form">
-          <h2 className="heading-secondary ma-bt-lg">
+        <div className="wrapp-alert">
+          <h2 className="alert alert--success">
             An email has been sent to your email address, please confirm your
             password reset!
           </h2>
