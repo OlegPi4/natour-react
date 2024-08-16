@@ -107,7 +107,10 @@ const BigTourContent = (props) => {
         })}
       </section>
       <section className="section-map">
-        <div className="map"></div>
+        <div
+          id="map"
+          data-location={`${JSON.stringify(tours.locations)}`}
+        ></div>
       </section>
       <section className="section-reviews">
         <div className="reviews">
