@@ -8,6 +8,7 @@ import Error from "../../components/error/error";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
+  const [show, setShow] = useState(false);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -34,10 +35,8 @@ const ForgotPassword = () => {
 
     userService
       .forgot(email)
-      .then((res) => {
-        if (res) {
-          console.log(res);
-        }
+      .then(() => {
+        setShow(true);
       })
       .catch((err) => onError(err));
 
@@ -56,32 +55,43 @@ const ForgotPassword = () => {
     return <Error />;
   }
   return (
-    <div className="login-form">
-      <h2 className="heading-secondary ma-bt-lg">Log into your account</h2>
-      <form className="form form--login">
-        <div className="form__group">
-          <label className="form__label" htmlFor="email">
-            Email address
-          </label>
-          <input
-            className="form__input"
-            id="email"
-            type="email"
-            placeholder="you@example.com"
-            required="required"
-            name="email"
-            value={email}
-            onChange={onValueChange}
-          />
-        </div>
+    <>
+      <div className="login-form">
+        <h2 className="heading-secondary ma-bt-lg">Log into your account</h2>
+        <form className="form form--login">
+          <div className="form__group">
+            <label className="form__label" htmlFor="email">
+              Email address
+            </label>
+            <input
+              className="form__input"
+              id="email"
+              type="email"
+              placeholder="you@example.com"
+              required="required"
+              name="email"
+              value={email}
+              onChange={onValueChange}
+            />
+          </div>
 
-        <div className="form__group">
-          <button className="btn btn--green" onClick={onPressConfirm}>
-            Confirm
-          </button>
+          <div className="form__group">
+            <button className="btn btn--green" onClick={onPressConfirm}>
+              Confirm
+            </button>
+          </div>
+        </form>
+      </div>
+
+      {show ? (
+        <div className="show login-form">
+          <h2 className="heading-secondary ma-bt-lg">
+            An email has been sent to your email address, please confirm your
+            password reset!
+          </h2>
         </div>
-      </form>
-    </div>
+      ) : null}
+    </>
   );
 };
 
