@@ -1,23 +1,25 @@
 /* eslint-disable */
+import mapboxgl from "!mapbox-gl";
 
-export const displayMap = (locations) => {
+export const displayMap = (node, locations) => {
   mapboxgl.accessToken =
-    'pk.eyJ1Ijoib2xlZ3BpNCIsImEiOiJjbHh2dmNqMnQxZDZvMmlwZTdibm1tOGF6In0.VcP-gqh1Qepve5tBEnzIlA';
+    "pk.eyJ1Ijoib2xlZ3BpNCIsImEiOiJjbHh2dmNqMnQxZDZvMmlwZTdibm1tOGF6In0.VcP-gqh1Qepve5tBEnzIlA";
+
   const map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/olegpi4/clxx4qkeo000k01qzhl8xh97u',
+    container: node,
+    style: "mapbox://styles/olegpi4/clxx4qkeo000k01qzhl8xh97u",
     scrollZoom: false,
   });
 
   const bounds = new mapboxgl.LngLatBounds();
 
   locations.forEach((loc) => {
-    const el = document.createElement('div');
-    el.className = 'marker';
+    const el = document.createElement("div");
+    el.className = "marker";
 
     new mapboxgl.Marker({
       element: el,
-      ancor: 'bottom',
+      ancor: "bottom",
     })
       .setLngLat(loc.coordinates)
       .addTo(map);

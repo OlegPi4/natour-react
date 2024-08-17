@@ -1,12 +1,13 @@
 /* eslint-disable */
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+
 import PropTypes from "prop-types";
 import useToursService from "../../services/servicesTours";
 import Spinner from "../../components/spiner/spiner";
 import Error from "../../components/error/error";
 import Gides from "./gides/gides";
 import Details from "./details/details";
-
+import MyMap from "./map/map";
 import Reviews from "./reviews/reviews";
 import Cta from "./cta/cta";
 
@@ -107,10 +108,7 @@ const BigTourContent = (props) => {
         })}
       </section>
       <section className="section-map">
-        <div
-          id="map"
-          data-location={`${JSON.stringify(tours.locations)}`}
-        ></div>
+        <MyMap tours={tours} />
       </section>
       <section className="section-reviews">
         <div className="reviews">

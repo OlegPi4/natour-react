@@ -1,30 +1,29 @@
 /* eslint-disable */
-import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
 
-//import /"mapbox-gl/dist/mapbox-gl.css";
+import "mapbox-gl/dist/mapbox-gl.css";
+import React, { Component, createRef } from "react";
+import { displayMap } from "./mapbox.mjs";
 
-import React, { Component } from "react";
+class MyMap extends Component {
+  constructor(props) {
+    super(props);
+    this.mapContainer = React.createRef(); // 1. Прописываем ref в конструкторе
+  }
 
-const Map = ReactMapboxGl({
-  accessToken: process.env.REACT_APP_TOKEN,
-});
+  componentDidMount() {
+    const locations = this.props.tours.locations;
+    const node = this.mapContainer.current;
 
-export default function MyMap({ locations }) {
-  return (
-    <>
-      <Map
-        style="mapbox://styles/olegpi4/clxx4qkeo000k01qzhl8xh97u"
-        containerStyle={{
-          height: "100%",
-          width: "100%",
-        }}
-        zoom={[8]}
-        center={[locations[0].coordinates[0], locations[0].coordinates[1]]}
-      >
-        <Layer type="symbol" id="marker" layout={{ "icon-image": "marker-15" }}>
-          <Feature coordinates={[-0.0047846041145, 0.3233379650232]} />
-        </Layer>
-      </Map>
-    </>
-  );
+    displayMap(node, locations);
+  }
+
+  render() {
+    return (
+      <>
+        <div id="map" ref={this.mapContainer} className="map-container"></div>
+      </>
+    );
+  }
 }
+
+export default MyMap;
