@@ -820,9 +820,26 @@ body {
   -ms-flex-align: center;
   align-items: center;
 }
+
 .cta__text {
   font-size: 1.9rem;
   font-weight: 400;
+}
+
+@media only screen and (max-width: 960px) {
+  .section-cta {
+    margin-top: 20px;
+    padding: 2rem;
+    padding-bottom: 4rem;
+    padding-top: 20px;
+  }
+  .cta__content {
+    display: flex;
+    flex-direction: column;
+  }
+  .cta__text {
+    margin-bottom: 20px;
+  }
 }
 
 .user-view {
