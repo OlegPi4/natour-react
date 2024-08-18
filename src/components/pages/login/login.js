@@ -1,41 +1,54 @@
+/* eslint-disable */
 import * as React from "react";
 import { useState, useEffect } from "react";
 
-import useServiceNatour from "../../services/servicesNatour";
-import Spinner from "../../components/spiner/spiner";
-import Error from "../../components/error/error";
+import UsersService from "../../../services/servicesUsers";
+import Spinner from "../../spiner/spiner";
+import Error from "../../error/error";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
-  const { loading, error, clearError, login } = useServiceNatour();
+  const userService = new UsersService();
+
+  const onError = (err) => {
+    console.error(err);
+    setError(true);
+    setLoading(false);
+  };
 
   const onValueChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === "username") {
+    if (name == "username") {
       setUsername(value);
     }
-    if (name === "password") {
+    if (name == "password") {
       setPassword(value);
     }
   };
 
   const onPressLogin = (e) => {
     e.preventDefault();
-    clearError();
+    setLoading(true);
 
-    login(username, password).then((res) => {
-      if (res.data.user) {
-        setUser(res.data.user);
-        localStorage.setItem("user", JSON.stringify(res.data.user));
-      }
-    });
+    userService
+      .login(username, password)
+      .then((res) => {
+        if (res) {
+          setUser(res.data.user);
+          localStorage.setItem("user", JSON.stringify(res.data.user));
+        }
+      })
+      .catch((err) => onError(err));
 
     setUsername("");
     setPassword("");
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -86,7 +99,7 @@ const Login = () => {
             value={password}
             onChange={onValueChange}
           />
-          <a className="link--forgot-password" href="/forgot">
+          <a className="link--forgot-password" href="/forgotPassword">
             forgot password
           </a>
         </div>

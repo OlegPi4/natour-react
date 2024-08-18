@@ -2,9 +2,9 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 
-import UsersService from "../../services/servicesUsers";
-import Spinner from "../../components/spiner/spiner";
-import Error from "../../components/error/error";
+import UsersService from "../../../services/servicesUsers";
+import Spinner from "../../spiner/spiner";
+import Error from "../../error/error";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");

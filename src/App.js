@@ -3,13 +3,15 @@ import { Routes, Route, Link } from "react-router-dom";
 
 import Layout from "./components/layout/layout";
 
-import Tours from "./pages/tours/tours";
-import Login from "./pages/login/login";
-import Signup from "./pages/signup/signup";
-import Me from "./pages/me/me";
-import Notfound from "./pages/notfound/notfound";
-import BibTour from "./pages/bigTour/bigTour";
-import ForgotPassword from "./pages/forgotPassword/forgotPassword";
+import {
+  BibTour,
+  ForgotPassword,
+  Login,
+  Me,
+  Notfound,
+  Signup,
+  Tours,
+} from "./components/pages";
 
 function App() {
   return (

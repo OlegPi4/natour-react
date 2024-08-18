@@ -6,7 +6,7 @@ function Notfound() {
   return (
     <>
       <div className="message">
-        <h2 className="message__title">The page is not found</h2>
+        <h2 className="message__title">This page does not exist</h2>
         <div className="message-buttun">
           <Link className="btn btn--green btn--small " to="/">
             {" "}

@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 import { useParams } from "react-router-dom";
-import BigTourContent from "../../components/bigTourContent/bigTourContent";
+import BigTourContent from "../../bigTourContent/bigTourContent";
 
 const BibTour = () => {
   const { slug, id } = useParams();

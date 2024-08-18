@@ -3,9 +3,9 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import UsersService from "../../services/servicesUsers";
-import Spinner from "../../components/spiner/spiner";
-import Error from "../../components/spiner/spiner";
+import UsersService from "../../../services/servicesUsers";
+import Spinner from "../../spiner/spiner";
+import Error from "../../spiner/spiner";
 
 const Signup = () => {
   const [name, setName] = useState("");

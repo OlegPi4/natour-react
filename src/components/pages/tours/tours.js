@@ -1,9 +1,9 @@
 /* eslint-disable */
 import React, { useEffect } from "react";
-import useToursService from "../../services/servicesTours";
-import Tour from "../../components/tour/tour";
-import Spinner from "../../components/spiner/spiner";
-import Error from "../../components/error/error";
+import useToursService from "../../../services/servicesTours";
+import Tour from "../../tour/tour";
+import Spinner from "../../spiner/spiner";
+import Error from "../../error/error";
 
 const Tours = () => {
   const { tours, loading, error, errorMessage, clearError, getAllTours } =
