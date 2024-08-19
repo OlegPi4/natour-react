@@ -2,8 +2,8 @@ import { useState } from "react";
 
 const FormUserPage = (props) => {
   const [user, setUser] = useState({ name: "", email: "" });
-  const currentUser = props;
-  console.log(currentUser);
+  const { currentUser } = props;
+  console.log(currentUser.name);
 
   return (
     <>

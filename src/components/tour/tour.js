@@ -1,8 +1,8 @@
 /* eslint-disable */
-
+import React, { memo } from "react";
 import { Link } from "react-router-dom";
 
-const Tour = ({ item }) => {
+const Tour = memo(({ item }) => {
   return (
     <div className="card" key={item._id}>
       <div className="card__header">
@@ -78,6 +78,6 @@ const Tour = ({ item }) => {
       </div>
     </div>
   );
-};
+});
 
 export default Tour;
