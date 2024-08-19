@@ -774,6 +774,7 @@ body {
   -webkit-box-shadow: 1rem 0.5rem 3rem rgba(0, 0, 0, 0.15);
   box-shadow: 1rem 0.5rem 3rem rgba(0, 0, 0, 0.15);
 }
+
 .cta__img--logo {
   padding: 2rem;
   display: -webkit-box;
@@ -797,6 +798,17 @@ body {
   -webkit-transform: translate(-35%, -50%);
   transform: translate(-35%, -50%);
 }
+
+@media only screen and (max-width: 680px) {
+  .cta {
+    padding: 6rem 4rem;
+  }
+  .cta__img,
+  .cta__img--logo {
+    display: none;
+  }
+}
+
 .cta__img--logo img {
   width: 100%;
 }
@@ -1358,6 +1370,12 @@ body {
   box-shadow: 0 2.5rem 8rem 2rem rgba(0, 0, 0, 0.06);
   padding: 5rem 7rem;
   border-radius: 5px;
+}
+
+@media only screen and (max-width: 580px) {
+  .login-form {
+    padding: 2rem 3rem;
+  }
 }
 
 .form__input {
