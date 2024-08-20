@@ -3,7 +3,6 @@ import * as React from "react";
 import { useEffect, useState } from "react";
 import NavUser from "./navuser/navuser";
 import NavAdmin from "./navAdmin/navAdmin";
-import FormUserPage from "./formUserPage/formUserPage";
 
 const Me = () => {
   const [user, setUser] = useState("");
@@ -35,7 +34,7 @@ const Me = () => {
   }, []);
 
   return (
-    <div className="user-view">
+    <>
       <nav className="user-view__menu">
         <ul className="side-nav">
           <NavUser />
@@ -43,16 +42,7 @@ const Me = () => {
 
         {user.role === "admin" ? <NavAdmin /> : null}
       </nav>
-      <div className="user-view__content">
-        <div className="user-view__form-container">
-          <h2 className="heading-secondary ma-bt-md">
-            {" "}
-            Your account settings{" "}
-          </h2>
-          <FormUserPage currentUser={user} />
-        </div>
-      </div>
-    </div>
+    </>
   );
 };
 export default Me;

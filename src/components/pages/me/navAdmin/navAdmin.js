@@ -4,22 +4,22 @@ import { NavLink } from "react-router-dom";
 const NavAdmin = () => {
   const details = [
     {
-      path: "#",
+      path: "adm-tours",
       lable: "Manage tours",
       descr: "map",
     },
     {
-      path: "#",
+      path: "adm-users",
       lable: "Manage users",
       descr: "users",
     },
     {
-      path: "#",
+      path: "adm-revievs",
       lable: "Manage reviews",
       descr: "star",
     },
     {
-      path: "#",
+      path: "adm-bookings",
       lable: "Manage bookings",
       descr: "briefcase",
     },

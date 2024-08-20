@@ -1,12 +1,38 @@
-import { useState } from "react";
+/* eslint-disable */
+import { useState, useEffect } from "react";
 
-const FormUserPage = (props) => {
-  const [user, setUser] = useState({ name: "", email: "" });
-  const { currentUser } = props;
-  console.log(currentUser.name);
+const FormUserSetup = () => {
+  const [user, setUser] = useState("");
+
+  function getUser(name) {
+    let us = JSON.parse(localStorage.getItem("user"));
+
+    if (!us) {
+      window.location.href = "/login";
+      return;
+    }
+    if (us.name === name) return;
+    setUser(us);
+  }
+
+  function updateUser(name) {
+    setInterval(() => getUser(name), 1000);
+  }
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      setUser(user);
+    }
+    document.title = "Natour | edit-profile  ";
+    updateUser(user.name);
+    return () => {
+      clearInterval(updateUser);
+    };
+  }, []);
 
   return (
-    <>
+    <div className="user-view__form-container">
+      <h2 className="heading-secondary ma-bt-md"> Your account settings </h2>
       <form
         className="form form-user-data"
         action="/submit-user-data"
@@ -20,7 +46,7 @@ const FormUserPage = (props) => {
             id="name"
             className="form__input"
             type="text"
-            value={currentUser.name}
+            placeholder={user.name}
             required="required"
             name="name"
             onChange={(e) => setUser({ ...user, name: e.target.value })}
@@ -34,15 +60,15 @@ const FormUserPage = (props) => {
             id="email"
             className="form__input"
             type="email"
-            value={currentUser.email}
+            placeholder={user.email}
             required="required"
             name="email"
             onChange={(e) => setUser({ ...user, email: e.target.value })}
           />
         </div>
       </form>
-    </>
+    </div>
   );
 };
 
-export default FormUserPage;
+export default FormUserSetup;

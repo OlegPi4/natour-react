@@ -69,8 +69,8 @@ class UsersService {
 
       return res.data;
     } catch (err) {
-      console.log(err);
-      showAlert("error", err);
+      console.log(err.response);
+      showAlert("error", "Something went very wrong!");
     }
   };
 

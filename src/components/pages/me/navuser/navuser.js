@@ -4,22 +4,22 @@ import { NavLink } from "react-router-dom";
 const NavUser = () => {
   const details = [
     {
-      path: "#",
+      path: "edit-profile",
       lable: "Settings",
       descr: "settings",
     },
     {
-      path: "/my-tours",
+      path: "my-tours",
       lable: "My bookings",
       descr: "briefcase",
     },
     {
-      path: "#",
+      path: "my-reviews",
       lable: "My reviews",
       descr: "star",
     },
     {
-      path: "#",
+      path: "my-billing",
       lable: "Billing",
       descr: "credit-card",
     },

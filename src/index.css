@@ -598,6 +598,13 @@ body {
   -o-object-fit: cover;
   object-fit: cover;
 }
+
+@media only screen and (max-width: 980px) {
+  .picture-box__img {
+    width: 160%;
+  }
+}
+
 .picture-box__img--1 {
   padding-top: 15%;
 }
@@ -612,6 +619,18 @@ body {
   position: relative;
   height: 65rem;
   margin-top: calc(0px - var(--section-rotate));
+}
+
+@media only screen and (max-width: 680px) {
+  .section-map {
+    height: 50rem;
+  }
+}
+
+@media only screen and (max-width: 460px) {
+  .section-map {
+    height: 40rem;
+  }
 }
 
 #map {

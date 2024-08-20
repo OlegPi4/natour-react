@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 import UsersService from "../../../services/servicesUsers";
 import Spinner from "../../spiner/spiner";
-import Error from "../../spiner/spiner";
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -13,25 +12,25 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
 
   let navigate = useNavigate();
   const userService = new UsersService();
 
   const onError = (err) => {
-    console.error(err);
-    setError(true);
     setLoading(false);
   };
 
   const onPressSignup = (e) => {
-    e.preventDefault();
     setLoading(true);
+    e.preventDefault();
 
     userService
       .signup(name, email, password, passwordConfirm)
       .then((res) => {
-        navigate("/login");
+        if (!res.status) return;
+        if (res.status === "success") {
+          navigate("/login");
+        }
       })
       .catch((err) => onError(err));
 
@@ -46,10 +45,10 @@ const Signup = () => {
     document.title = "Natour | signup";
   }, []);
 
-  loading ? <Spinner /> : null;
-
-  error ? <Error /> : null;
-
+  const Spin = loading ? <Spinner /> : null;
+  {
+    Spin;
+  }
   return (
     <div className="login-form">
       <h2 className="heading-secondary ma-bt-lg">Sign up account</h2>
@@ -86,7 +85,8 @@ const Signup = () => {
 
         <div className="form__group">
           <label className="form__label" htmlFor="password">
-            Password
+            Password{" "}
+            <span style={{ fontSize: "12px" }}> / min length - 6 </span>
           </label>
           <input
             className="form__input"
