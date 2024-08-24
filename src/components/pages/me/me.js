@@ -7,14 +7,14 @@ import NavAdmin from "./navAdmin/navAdmin";
 const Me = () => {
   const [user, setUser] = useState("");
 
-  function getUser(name) {
+  function getUser() {
     let us = JSON.parse(localStorage.getItem("user"));
 
     if (!us) {
       window.location.href = "/login";
       return;
     }
-    if (us.name == name) return;
+    if (us.name == user.name) return;
     setUser(us);
   }
 
