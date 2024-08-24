@@ -9,12 +9,18 @@ const Cta = ({ tour }) => {
 
   function getUser() {
     let us = JSON.parse(localStorage.getItem("user"));
-
-    setUser(us);
+    if (us.name != user.name) {
+      setUser(us);
+    }
   }
 
   function updateUser() {
     setInterval(() => getUser(), 1500);
+  }
+
+  function getIdTour(e) {
+    const id = e.target.dataset.tourId;
+    console.log(id);
   }
 
   useEffect(() => {
@@ -51,6 +57,7 @@ const Cta = ({ tour }) => {
             className="btn btn--green span-all-rows"
             id="book-tour"
             data-tour-id={`${tour.id}`}
+            onClick={getIdTour}
           >
             {" "}
             Book tour now!{" "}

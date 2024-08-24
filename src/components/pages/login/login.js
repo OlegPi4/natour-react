@@ -94,7 +94,7 @@ const Login = () => {
             type="password"
             placeholder="••••••••"
             required="required"
-            minLength="8"
+            minLength="6"
             name="password"
             value={password}
             onChange={onValueChange}

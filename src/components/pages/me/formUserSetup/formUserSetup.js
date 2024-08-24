@@ -1,5 +1,6 @@
 /* eslint-disable */
 import { useState, useEffect } from "react";
+import InputComponent from "../../../components-ui/InputComponent";
 
 const FormUserSetup = () => {
   const [user, setUser] = useState("");
@@ -18,6 +19,11 @@ const FormUserSetup = () => {
   function updateUser(name) {
     setInterval(() => getUser(name), 1000);
   }
+
+  const onChangeValue = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
+
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (user) {
@@ -42,28 +48,22 @@ const FormUserSetup = () => {
           <label className="form__label" htmlFor="name">
             Name{" "}
           </label>
-          <input
-            id="name"
-            className="form__input"
-            type="text"
-            placeholder={user.name}
-            required="required"
-            name="name"
-            onChange={(e) => setUser({ ...user, name: e.target.value })}
+          <InputComponent
+            veriable={user.name}
+            type={"text"}
+            name={"name"}
+            onChangeValue={onChangeValue}
           />
         </div>
         <div className="form__group ma-bt-md">
           <label className="form__label" htmlFor="email">
             Email address
           </label>
-          <input
-            id="email"
-            className="form__input"
-            type="email"
-            placeholder={user.email}
-            required="required"
-            name="email"
-            onChange={(e) => setUser({ ...user, email: e.target.value })}
+          <InputComponent
+            veriable={user.email}
+            type={"email"}
+            name={"email"}
+            onChangeValue={onChangeValue}
           />
         </div>
       </form>
