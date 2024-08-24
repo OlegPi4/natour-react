@@ -59,6 +59,11 @@ body {
     padding: 4rem 3rem;
   }
 }
+@media only screen and (max-width: 500px) {
+  .main {
+    padding: 2rem 1rem;
+  }
+}
 
 .flex {
   display: -webkit-box;
@@ -921,6 +926,12 @@ body {
   }
   .line {
     margin: 3rem 0;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .user-view__form-container {
+    padding: 0 1rem;
   }
 }
 
