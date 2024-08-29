@@ -1,5 +1,6 @@
 /* eslint-disable */
 import { useEffect } from "react";
+import { Helmet } from "react-helmet";
 
 import PropTypes from "prop-types";
 import useToursService from "../../services/servicesTours";
@@ -33,6 +34,10 @@ const BigTourContent = (props) => {
   }
   return (
     <>
+      <Helmet>
+        <title>Natours | {tours.name} </title>
+        <meta name="description" content={`Сhoose a tour ${tours.name}`} />
+      </Helmet>
       <section className="section-header">
         <div className="header__hero">
           <div className="header__hero-overlay"> &nbsp;</div>

@@ -26,8 +26,8 @@ class SettingsMeServices {
       return res.data.user;
     } catch (err) {
       console.log(JSON.stringify(err));
-      showAlert("error", JSON.stringify(err));
-      true(err);
+      showAlert("error", err.message);
+      throw err;
     }
   };
 }
