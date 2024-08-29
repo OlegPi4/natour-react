@@ -1427,6 +1427,19 @@ body {
   }
 }
 
+.form-block-wrap {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+.daun {
+  margin-top: 0.8rem;
+}
+.formik-error {
+  margin-top: 0.5rem;
+  color: red;
+  font-size: 1.4rem;
+}
 .form__input {
   display: block;
   font-family: inherit;

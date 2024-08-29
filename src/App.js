@@ -11,6 +11,7 @@ import MyReviews from "./components/pages/me/myReviews/myReviews";
 import MyTours from "./components/pages/me/myTours/myTours";
 import MyBilling from "./components/pages/me/myBilling/myBilling";
 import AdmTours from "./components/pages/me/admTours/admTours";
+import EditTour from "./components/pages/me/navAdmin/formEditTour/fornEditTour";
 import AdmUsers from "./components/pages/me/admUsers/admUsers";
 import AdmReviews from "./components/pages/me/admReviews/admReviews";
 import AdmBooking from "./components/pages/me/admBooking/admBooking";
@@ -87,8 +88,9 @@ function App() {
                   path={route.path}
                   element={route.element}
                   ref={route.nodeRef}
-                />
+                ></Route>
               ))}
+              <Route path="adm-tours/:id" element={<EditTour />} />
             </Route>
             <Route path="forgotPassword" element={<ForgotPassword />} />
             <Route path="*" element={<Notfound />} />

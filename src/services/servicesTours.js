@@ -44,6 +44,7 @@ const useToursService = () => {
     getAllTours,
     getOneTour,
     clearError,
+    setLoading,
   };
 };
 
