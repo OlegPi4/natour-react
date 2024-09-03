@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import useToursService from "../../../../services/servicesTours";

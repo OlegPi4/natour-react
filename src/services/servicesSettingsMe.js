@@ -5,8 +5,8 @@ import { showAlert } from "./alerts";
 // type is either 'password' or 'data'
 
 class SettingsMeServices {
-  _apiBase = "https://natour-red.vercel.app/api/v1/users";
-
+  //_apiBase = "https://natour-red.vercel.app/api/v1/users";
+  _apiBase = "https://natour-react.vercel.app/api/v1/users";
   updateSettings = async (name, email, photo) => {
     try {
       const res = await axios({

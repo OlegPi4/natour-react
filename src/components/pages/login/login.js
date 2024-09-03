@@ -2,6 +2,7 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
+import { useNavigate } from "react-router-dom";
 
 import UsersService from "../../../services/servicesUsers";
 import Spinner from "../../spiner/spiner";
@@ -14,6 +15,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
+  const navigate = useNavigate();
   const userService = new UsersService();
 
   const onError = (err) => {
@@ -43,6 +45,7 @@ const Login = () => {
         if (res) {
           setUser(res.data.user);
           localStorage.setItem("user", JSON.stringify(res.data.user));
+          navigate("/");
         }
       })
       .catch((err) => onError(err));

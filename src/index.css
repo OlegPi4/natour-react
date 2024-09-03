@@ -269,6 +269,7 @@ body {
 .btn--green {
   background-color: #55c57a;
   color: #fff;
+  text-align: center;
 }
 .btn--green::after {
   background-color: #55c57a;

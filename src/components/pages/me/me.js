@@ -39,8 +39,8 @@ const Me = () => {
         <ul className="side-nav">
           <NavUser />
         </ul>
-        <NavAdmin />
-        {/* {user.role === "admin" ? <NavAdmin /> : null} */}
+
+        {user.role === "admin" ? <NavAdmin /> : null}
       </nav>
     </>
   );
