@@ -10,18 +10,17 @@ class SettingsMeServices {
 
   updateSettings = async (name, email, photo) => {
     try {
-      //    const jwtToken = localStorage.getItem("token");
       const res = await axios({
         withCredentials: true,
         method: "PATCH",
         url: `${this._apiBase}/updateMe`,
-        headers: { Authorization: `Bearer ${jwtToken}` },
+        headers: { Authorization: `Bearer ${this.jwtToken}` },
 
-        data: {
+        data: JSON.stringify({
           name,
           email,
           photo,
-        },
+        }),
       });
 
       if (res.data.status === "success") {
@@ -29,26 +28,23 @@ class SettingsMeServices {
       }
       return res.data.user;
     } catch (err) {
-      console.log(JSON.stringify(err));
-      showAlert("error", err.message);
-      throw err;
+      console.log(err);
+      showAlert("error", err);
     }
   };
 
   updatePassword = async (passwordCurrent, password, passwordConfirm) => {
-    alert(`${passwordCurrent}/${password}/${passwordConfirm}`);
-
     try {
       const res = await axios({
         withCredentials: true,
         method: "PATCH",
-        headers: { Authorization: `Bearer ${jwtToken}` },
-        url: `${_apiBase}/updateMyPassword`,
-        data: {
+        headers: { Authorization: `Bearer ${this.jwtToken}` },
+        url: `${this._apiBase}/updateMyPassword`,
+        data: JSON.stringify({
           passwordCurrent,
           password,
           passwordConfirm,
-        },
+        }),
       });
 
       if (res.data.status === "success") {
@@ -56,35 +52,10 @@ class SettingsMeServices {
         location.assign("/me");
       }
     } catch (err) {
-      showAlert("error", err.response?.data.message);
+      console.log(err);
+      showAlert("error", err);
     }
   };
 }
 
 export default SettingsMeServices;
-
-// export const updatePassword = async (
-//   passwordCurrent,
-//   password,
-//   passwordConfirm
-// ) => {
-//   try {
-//     const res = await axios({
-//       withCredentials: true,
-//       method: "PATCH",
-//       url: `${_apiBase}/updateMyPassword`,
-//       data: {
-//         passwordCurrent,
-//         password,
-//         passwordConfirm,
-//       },
-//     });
-
-//     if (res.data.status === "success") {
-//       showAlert("success", `${type.toUpperCase()} updated successfully!`);
-//       location.assign("/me");
-//     }
-//   } catch (err) {
-//     showAlert("error", err.response.data.message);
-//   }
-// };
