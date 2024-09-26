@@ -34,6 +34,7 @@ const Header = () => {
     userService.logout().then((res) => {
       if (res == "success") {
         localStorage.removeItem("user");
+        localStorage.removeItem("token");
         setUser(null);
       }
     });

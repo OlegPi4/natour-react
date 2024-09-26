@@ -20,7 +20,11 @@ const FormUserSetup = () => {
   const onSubmitPassword = (e) => {
     e.preventDefault();
     setShowPassw(true);
-    updatePassword(passwordCurrent, password, passwordConfirm);
+    settingsMeServices.updatePassword(
+      passwordCurrent,
+      password,
+      passwordConfirm
+    );
     setShowPassw(false);
   };
 
