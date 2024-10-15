@@ -1,18 +1,18 @@
 /* eslint-disable */
-import React, { useEffect, memo } from "react";
+import React, { useEffect, useCallback } from "react";
 import { Helmet } from "react-helmet";
 import useToursService from "../../../services/servicesTours";
 import Tour from "../../tour/tour";
 import Spinner from "../../spiner/spiner";
 import Error from "../../error/error";
 
-const Tours = memo(() => {
-  const { tours, loading, error, errorMessage, clearError, getAllTours } =
+const Tours = () => {
+  const { tours, errorMessage, clearError, getAllTours, process } =
     useToursService();
 
-  const getTours = () => {
+  const getTours = useCallback(() => {
     getAllTours();
-  };
+  }, [tours]);
 
   useEffect(() => {
     clearError();
@@ -20,10 +20,10 @@ const Tours = memo(() => {
     document.title = "Natour   |   tours";
   }, []);
 
-  if (loading) {
+  if (process === "loading") {
     return <Spinner />;
   }
-  if (error) {
+  if (process === "error") {
     return <Error errorMessage={errorMessage} />;
   }
   const elements = tours.map((item) => {
@@ -41,6 +41,6 @@ const Tours = memo(() => {
       <div className="card-container">{elements}</div>
     </>
   );
-});
+};
 
 export default Tours;

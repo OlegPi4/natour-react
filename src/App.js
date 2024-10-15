@@ -11,16 +11,19 @@ import MyReviews from "./components/pages/me/myReviews/myReviews";
 import MyTours from "./components/pages/me/myTours/myTours";
 import MyBilling from "./components/pages/me/myBilling/myBilling";
 import AdmTours from "./components/pages/me/admTours/admTours";
-import EditTour from "./components/pages/me/navAdmin/formEditTour/fornEditTour";
+import EditTour from "./components/pages/me/navAdmin/formEditTour/formEditTour";
 import AdmUsers from "./components/pages/me/admUsers/admUsers";
 import AdmReviews from "./components/pages/me/admReviews/admReviews";
 import AdmBooking from "./components/pages/me/admBooking/admBooking";
+import LayoutMePoints from "./components/pages/me/layoutMe/LayoutMePoints";
+
 import "./App";
 
 const Tours = lazy(() => import("./components/pages/tours/tours"));
 const BibTour = lazy(() => import("./components/pages/bigTour/bigTour"));
 
-const meroutes = [
+const meRoutes = [
+  // points of menu on the page "me"
   {
     path: "edit-profile",
     name: "edit-profile",
@@ -82,7 +85,15 @@ function App() {
             <Route path="tour/:slug/:id" element={<BibTour />} />
             <Route path="signup" element={<Signup />} />
             <Route path="me" element={<LayoutMe />}>
-              {meroutes.map((route, index) => (
+              {/* <Route
+              path="me"
+              element={
+                <LayoutMe>
+                  <LayoutMePoints />
+                </LayoutMe>
+              }
+            > */}
+              {meRoutes.map((route, index) => (
                 <Route
                   key={index}
                   path={route.path}
